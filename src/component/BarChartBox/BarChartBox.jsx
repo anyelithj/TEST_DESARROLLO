@@ -1,7 +1,7 @@
 import { Bar, BarChart, CartesianGrid, Legend, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 export const BarChartBox = ({data}) => {
-  console.log(data, "data grap")
+  // console.log(data, "data grap")
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../../App.css';
 import Pagination from '../Pagination/Pagination';
+import { BarChartBox } from '../BarChartBox/BarChartBox';
+import { LineChart } from 'recharts';
 
 export const TouristicAttractionTable = () => {
   const [touristicAttraction, setTouristicAttraction] = useState([]);
@@ -17,7 +19,7 @@ export const TouristicAttractionTable = () => {
 
     results.forEach((item) => {
       const departmentId = item.city.departmentId || 'Unknown Department';
-      const departmentName = `Department-${departmentId}`;
+      const departmentName = `Department-id: ${departmentId}`;
       const cityName = item.city.name || 'Unknown City';
 
       if (!groupedData[departmentName]) {
@@ -72,6 +74,10 @@ export const TouristicAttractionTable = () => {
 
   return (
     <>
+      <div className='charts'>
+        <BarChartBox data={touristicAttraction} />
+        <LineChart data={touristicAttraction} />
+      </div>
       <table>
         <thead>
           <tr>
@@ -90,6 +96,7 @@ export const TouristicAttractionTable = () => {
           ))}
         </tbody>
       </table>
+    
       <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} nPages={nPages} setDataQt={setDataQt}/>
     </>
   );

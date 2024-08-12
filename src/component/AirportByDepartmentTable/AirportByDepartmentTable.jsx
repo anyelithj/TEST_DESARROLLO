@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../../App.css';
 import Pagination from '../Pagination/Pagination';
+import { BarChartBox } from '../BarChartBox/BarChartBox';
+import { LineChart } from 'recharts';
 
 export const AirportByDepartmentTable = () => {
   const [airportData, setAirportData] = useState({}); 
@@ -53,12 +55,17 @@ export const AirportByDepartmentTable = () => {
   const indexEnd = currentPage * dataQt;
   const indexStart = indexEnd - dataQt;
 
-  const nData = airportData.slice( indexStart, indexEnd);
+  // const nData = airportData.slice( indexStart, indexEnd);
+  const nData = Object.values(airportData).slice(indexStart, indexEnd);
   const nPages = Math.ceil(airportData.length / dataQt) 
   // console.log(airportData, "airportData after setting");
 
   return (
     <>
+      <div className='charts'>
+      <BarChartBox data={airportData} />
+      <LineChart data={airportData} />
+    </div>
     <table>
       <thead>
         <tr>
@@ -79,6 +86,7 @@ export const AirportByDepartmentTable = () => {
         )}
       </tbody>
     </table>
+  
     <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} nPages={nPages} setDataQt={setDataQt}/>
     </>
   );

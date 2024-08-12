@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import '../../App.css';
 import Pagination from '../Pagination/Pagination';
+import { BarChartBox } from '../BarChartBox/BarChartBox';
+import { LineChart } from 'recharts';
 
 const AirportByRegionTable = () => {
     const [airportData, setAirportData] = useState([]);
@@ -70,6 +72,10 @@ const AirportByRegionTable = () => {
 
     return (
         <>
+         <div className='charts'>
+                <BarChartBox data={airportData} />
+                <LineChart data={airportData} />
+            </div>
             <table>
                 <thead>
                     <tr>
