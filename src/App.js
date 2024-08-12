@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import { AirportByDepartmentTable } from './component/AirportByDepartmentTable/AirportByDepartmentTable';
+import AirportByRegionTable from './component/AirportByRegionTable/AirportByRegionTable';
+import { PresidentTable } from './component/PresidentTable/PresidentTable';
+import Tabs from './component/Tabs/Tabs';
+import { TouristicAttractionTable } from './component/TouristicAttractionTable/TouristicAttractionTable';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Tabs />
+      {/* <PresidentTable/>
+      <AirportByDepartmentTable/>
+      <AirportByRegionTable/>
+      <TouristicAttractionTable/> */}
     </div>
   );
 }
