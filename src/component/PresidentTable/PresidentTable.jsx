@@ -77,8 +77,8 @@ export const PresidentTable = () => {
   const nPages = Math.ceil(dataParties.length / dataQt);
   return (
     <>
-      <div className="sub-content">
-        <div className="charts">
+      <div className="content_panel">
+        <div className="content_panel__charts">
           <BarChartBox
             data={dataParties}
             dataKey="count"
@@ -89,8 +89,8 @@ export const PresidentTable = () => {
             dataKey="count"
           />
         </div>
-        <div className="table-content">
-          <table>
+        <div className="content_panel__table">
+          <table className="content_panel__table-content">
             <thead>
               <tr>
                 <th>Partido Político</th>
@@ -108,7 +108,7 @@ export const PresidentTable = () => {
           </table>
         </div>
       </div>
-      <div className="pagination-content">
+      <div className="content_panel__pagination">
         <Pagination
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}

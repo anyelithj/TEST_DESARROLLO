@@ -20,11 +20,11 @@ const Tabs = () => {
 
   return (
     <div id="container">
-      <div className="tab-buttons">
+      <div className="tabs__buttons">
         {tabsData.map((tab) => (
           <button
             key={tab.id}
-            className={`tab-btn ${activeTab === tab.id ? "active" : ""}`}
+            className={`tabs__button ${activeTab === tab.id ? "active" : ""}`}
             onClick={() => handleTabClick(tab.id)}
           >
             {tab.title}
@@ -32,15 +32,15 @@ const Tabs = () => {
         ))}
       </div>
 
-      <div className="tab-contents">
+      <div className="tabs__contents">
         {tabsData.map((tab) => (
           <div
             key={tab.id}
-            className={`content ${activeTab === tab.id ? "show" : ""}`}
+            className={`tabs__content ${activeTab === tab.id ? "show" : ""}`}
             id={tab.id}
           >
-            <div className="infos">
-              <h1 className="content-title">Gráficos</h1>
+            <div className="tabs__info">
+              <h1 className="tabs__title">Gráficos</h1>
               {tab.id === "president" && <PresidentTable />}
               {tab.id === "touristicAttraction" && <TouristicAttractionTable />}
               {tab.id === "airportDepartment" && <AirportByDepartmentTable />}
@@ -54,3 +54,4 @@ const Tabs = () => {
 };
 
 export default Tabs;
+

@@ -93,8 +93,8 @@ export const TouristicAttractionTable = () => {
 
   return (
     <>
-      <div className="sub-content">
-        <div className="charts">
+      <div className="content_panel">
+        <div className="content_panel__charts">
           <BarChartBox
             data={touristicAttraction}
             dataKey="count"
@@ -102,8 +102,8 @@ export const TouristicAttractionTable = () => {
           />
           <PieCartBox data={touristicAttractionPie} />
         </div>
-        <div className="table-content">
-          <table>
+        <div className="content_panel__table">
+          <table className="content_panel__table-content">
             <thead>
               <tr>
                 <th>Departamento</th>
@@ -123,7 +123,7 @@ export const TouristicAttractionTable = () => {
           </table>
         </div>
       </div>
-      <div className="pagination-content">
+      <div className="content_panel__pagination">
         <Pagination
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}

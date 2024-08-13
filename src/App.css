@@ -1,192 +1,225 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 
+:root {
+  --primary-color: #6366f2;
+  --secundary-color: #c7d2fe;
+  --tertiary-color: #a5b4fc;
+}
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    background-color: #6366f2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 #container {
-    background-color: #f0f8ff;
-    width: 100%;
-    padding: 20px;
-    margin: 1.5rem auto ;
-    border-radius: 8px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  background-color: #f0f8ff;
+  width: 100%;
+  padding: 20px;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.tab-buttons {
-    display: flex;
-    gap: 6px;
+.tabs__buttons {
+  display: flex;
+  gap: 6px;
 }
 
-.tab-btn {
-    width: 100%;
-    border: none;
-    color: #020617;
-    background-color: #f0f8ff;
-    border-radius: 8px 8px 0px 0px;
-    font-weight: 500;
-    padding: 8px;
-    cursor: pointer;
-    font-size: medium;
-    transition: background-color .3s ease;
+.tabs__title {
+  text-align: center;
 }
 
-.tab-btn.active {
-    background-color: #c7d2fe;
+.tabs__button {
+  width: 100%;
+  border: none;
+  color: #020617;
+  background-color: #f0f8ff;
+  border-radius: 8px 8px 0px 0px;
+  font-weight: 500;
+  padding: 8px;
+  cursor: pointer;
+  font-size: medium;
+  transition: background-color 0.3s ease;
 }
 
-.tab-btn:hover {
-    background-color: #a5b4fc;
+.tabs__button.active {
+  background-color: var(--secundary-color);
+}
+
+.tabs__button:hover {
+  background-color: var(--tertiary-color);
 }
 
 .content {
-    display: none;
+  display: none;
 }
 
-.content.show {
-    display: flex;
-    gap: 14px;
-    background-color: #c7d2fe;
-    border-radius: 0px 0px 8px 8px;
-    padding: 16px;
+.tabs__content {
+  display: none;
 }
 
-table {
+.tabs__content.show {
+  display: flex;
+  gap: 14px;
+  background-color: var(--secundary-color);
+  border-radius: 0px 0px 8px 8px;
+  padding: 16px;
+}
+
+.content_panel__table-content {
   font-family: Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
 }
+
 tr {
   border-bottom: 1px solid #ccc;
 }
+
 th,
 td {
   text-align: left;
   padding: 8px;
 }
+
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
 th {
- background-color: #6366f2;
-}
-.sub-content {
-    display: grid;
-    gap: 8px;
+  background-color: var(--primary-color);
 }
 
-.charts {
-    display: flex;
-  }
- 
-.table-content {
-    grid-column: span 5 / span 5;
-    grid-row: span 3 / span 3;
-    grid-row-start: 3;
+.content_panel {
+  display: grid;
+  gap: 8px;
 }
+
+.content_panel__charts {
+  display: flex;
+}
+
+.content_panel__table {
+  grid-column: span 5 / span 5;
+  grid-row: span 3 / span 3;
+  grid-row-start: 3;
+}
+
 .conteiner-pagination {
- display: 'flex';
- flex-direction: column;
- justify-content:'space-around';
- margin: 0.5rem auto;
+  display: "flex";
+  flex-direction: column;
+  justify-content: "space-around";
+  margin: 0.5rem auto;
 }
-.content-title {
-    text-align: center;
+
+.pagination {
+  display: flex;
+  margin: 1.5rem;
 }
- .button {
-    background-color: #6366f2;
-    border: none;
-    width: 5rem;
-    height: 2rem;
-    font-weight: 500;
- }
- .selectPage {
-    padding: 5px 2px;
-    text-align: center;
-    font-weight: 500;
- }
- .pagination-content {
-   display: flex;
-   justify-content: center;
- }
-.barChartBox{
-    width: 40%;
+
+.pagination__button {
+  background-color: var(--primary-color);
+  border: none;
+  width: 5rem;
+  height: 2rem;
+  font-weight: 500;
+}
+
+.pagination__select {
+  padding: 5px 2px;
+  text-align: center;
+  font-weight: 500;
+  border: none;
+}
+
+.content_panel__pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination__controls {
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination__current-page {
+  text-align: center;
+}
+
+.bar-chart-box {
+  width: 40%;
+  height: 100%;
+}
+
+.pie-chart-box {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.pie-chart-box__chart {
+  display: flex;
+}
+
+.pie-chart-box__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 14px;
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.pie-chart-box__option {
+  flex: 1 1 calc(33.333% - 2px);
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  padding-bottom: 0;
+}
+
+.pie-chart-box__option .pie-chart-box__title {
+  margin-bottom: 5px;
+}
+
+.pie-chart-box__title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pie-chart-box__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 769px) {
+  .content_panel__charts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pie-chart-box {
     height: 100%;
   }
-.showPage {
-    width: 5rem;
-    display: flex;
-    flex-direction: column;
-}
-.currentPage {
-    text-align: center;
-}
-.pieChartBox {
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 60%;
-}
-.chartpie {
-    display: flex;
-}
 
-.options {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 5px; 
-    font-size: 14px;
-    width: 40%;
-    margin-bottom: 0;
-}
-
-.option {
-    flex: 1 1 calc(33.333% - 2px); 
-    box-sizing: border-box; 
-    flex-direction: column;
-    gap: 5px;
-    align-items: center;
-    padding-bottom: 0; 
-}
-.option .title {
-    margin-bottom: 5px; 
-}
-.title {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-@media screen and (max-width: 769px) {
-    body {
-      background-color: lightgreen;
-    }
-    .charts {
-        display: flex;
-        flex-direction: column;
-      }
-      .pieChartBox {
-        height: 100%;
-    }
-    .barChartBox{
-        width: 100%;
-        margin-bottom: 15px;
-      }
+  .bar-chart-box {
+    width: 100%;
+    margin-bottom: 15px;
   }
+}

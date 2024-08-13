@@ -10,8 +10,8 @@ import "../../App.css";
 
 export const BarChartBox = ({ data, dataKey, xAxisKey }) => {
   return (
-    <div className="barChartBox">
-      <div className="chartBar">
+    <div className="bar-chart-box">
+      <div>
         <ResponsiveContainer width="100%" height={150}>
           <BarChart data={data}>
             <XAxis dataKey={xAxisKey} />

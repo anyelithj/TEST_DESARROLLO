@@ -69,15 +69,15 @@ const AirportByRegionTable = () => {
   const nPages = Math.ceil(airportData.length / dataQt);
   return (
     <>
-      <div className="sub-content">
-        <div className="charts">
+      <div className="content_panel">
+        <div className="content_panel__charts">
           <BarChartBox
             data={airportData}
             dataKey="count"
             xAxisKey="departmentName"
           />
         </div>
-        <table>
+        <table className="content_panel__table-content">
           <thead>
             <tr>
               <th>Región</th>
@@ -100,7 +100,7 @@ const AirportByRegionTable = () => {
           </tbody>
         </table>
       </div>
-      <div className="pagination-content">
+      <div className="content_panel__pagination">
         <Pagination
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}

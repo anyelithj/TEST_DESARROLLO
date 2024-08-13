@@ -96,13 +96,13 @@ export const AirportByDepartmentTable = () => {
 
   return (
     <>
-      <div className="sub-content">
-        <div className="charts">
+      <div className="content_panel">
+        <div className="content_panel__charts">
           <BarChartBox data={barChartData} dataKey="count" xAxisKey="name" />
           <PieCartBox data={airportDataPie} />
         </div>
-        <div className="table-content">
-          <table>
+        <div className="content_panel__table">
+          <table className="content_panel__table-content">
             <thead>
               <tr>
                 <th>Departamento</th>
@@ -124,7 +124,7 @@ export const AirportByDepartmentTable = () => {
           </table>
         </div>
       </div>
-      <div className="pagination-content">
+      <div className="content_panel__pagination">
         <Pagination
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
