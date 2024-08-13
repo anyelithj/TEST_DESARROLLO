@@ -1,6 +1,6 @@
 # Challenge
 
-App Challenge consume la Api [RandomUser](https://api-colombia.com/) y esta desarrollada en React
+App Challenge consume la Api (https://api-colombia.com/) y esta desarrollada en React
 <div align="center">
   <img src="![image](https://github.com/user-attachments/assets/67f9b7ab-5d20-4d67-853d-e3e78748df14)"/>
 </div>
