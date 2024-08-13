@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
-import '../../App.css';
-import Pagination from '../Pagination/Pagination';
-import { BarChartBox } from '../BarChartBox/BarChartBox';
-import { LineChart } from 'recharts';
+import { useEffect, useState } from "react";
+import "../../App.css";
+import Pagination from "../Pagination/Pagination";
+import { BarChartBox } from "../BarChartBox/BarChartBox";
+import { PieCartBox } from "../PieCartBox/PieCartBox";
 
 export const AirportByDepartmentTable = () => {
-  const [airportData, setAirportData] = useState({}); 
-  const [dataQt, setDataQt] = useState(7);
+  const [airportData, setAirportData] = useState({});
+  const [airportDataPie, setAirportDataPie] = useState([]);
+  const [barChartData, setBarChartData] = useState([]);
+  const [dataQt, setDataQt] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-
 
   const getData = async () => {
     try {
       const url = "https://api-colombia.com/api/v1/Airport";
       const res = await fetch(url);
       const results = await res.json();
-      
+
       const groupedData = results.reduce((acc, airport) => {
         const { department, city } = airport;
 
@@ -26,7 +27,7 @@ export const AirportByDepartmentTable = () => {
         if (!acc[department.name][city.name]) {
           acc[department.name][city.name] = {
             airports: [],
-            count: 0
+            count: 0,
           };
         }
 
@@ -34,60 +35,103 @@ export const AirportByDepartmentTable = () => {
           id: airport.id,
           name: airport.name,
           type: airport.type,
-          iataCode: airport.iataCode
+          iataCode: airport.iataCode,
         });
         acc[department.name][city.name].count += 1;
 
         return acc;
       }, {});
 
-
       setAirportData(groupedData);
-      // console.log(airportData, "airportData")
     } catch (error) {
       console.error("Error fetching airport data: ", error);
     }
   };
 
   useEffect(() => {
-    getData(); 
+    getData();
   }, []);
+
+  useEffect(() => {
+    const barChartDataArray = Object.entries(airportData).flatMap(
+      ([department, cities]) =>
+        Object.entries(cities).map(([city, data]) => ({
+          name: `${department} - ${city}`,
+          count: data.count,
+        }))
+    );
+
+    setBarChartData(barChartDataArray);
+
+    const colors = [
+      "#FF5733",
+      "#33FF57",
+      "#3357FF",
+      "#FF33A8",
+      "#FF8C33",
+      "#33FFF5",
+      "#FF33D1",
+      "#B833FF",
+      "#FFAF33",
+      "#33FF9A",
+    ];
+
+    const dataPartiesArrayPie = Object.entries(airportData).map(
+      ([department, cities], index) => ({
+        id: department,
+        name: department,
+        value: Object.values(cities).reduce((acc, city) => acc + city.count, 0),
+        color: colors[index % colors.length],
+      })
+    );
+
+    setAirportDataPie(dataPartiesArrayPie);
+  }, [airportData]);
+
   const indexEnd = currentPage * dataQt;
   const indexStart = indexEnd - dataQt;
 
-  // const nData = airportData.slice( indexStart, indexEnd);
-  const nData = Object.values(airportData).slice(indexStart, indexEnd);
-  const nPages = Math.ceil(airportData.length / dataQt) 
-  // console.log(airportData, "airportData after setting");
+  const nData = Object.entries(airportData).slice(indexStart, indexEnd);
+  const nPages = Math.ceil(Object.keys(airportData).length / dataQt);
 
   return (
     <>
-      <div className='charts'>
-      <BarChartBox data={airportData} />
-      <LineChart data={airportData} />
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Departamento</th>
-          <th>Ciudad</th>
-          <th>Conteo</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(airportData).map(([department, cities]) =>
-          Object.entries(cities).map(([city, data]) => (
-            <tr key={`${department}-${city}`}>
-              <td>{department}</td>
-              <td>{city}</td>
-              <td>{data.count}</td>
-            </tr>
-          ))
-        )}
-      </tbody>
-    </table>
-  
-    <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} nPages={nPages} setDataQt={setDataQt}/>
+      <div className="sub-content">
+        <div className="charts">
+          <BarChartBox data={barChartData} dataKey="count" xAxisKey="name" />
+          <PieCartBox data={airportDataPie} />
+        </div>
+        <div className="table-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th>Conteo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {nData.map(([department, cities]) =>
+                Object.entries(cities).map(([city, data]) => (
+                  <tr key={`${department}-${city}`}>
+                    <td>{department}</td>
+                    <td>{city}</td>
+                    <td>{data.count}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className="pagination-content">
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          nPages={nPages}
+          setDataQt={setDataQt}
+        />
+      </div>
     </>
   );
-}
+};

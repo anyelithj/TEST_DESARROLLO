@@ -1,18 +1,16 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { AirportByDepartmentTable } from './component/AirportByDepartmentTable/AirportByDepartmentTable';
-import AirportByRegionTable from './component/AirportByRegionTable/AirportByRegionTable';
-import { PresidentTable } from './component/PresidentTable/PresidentTable';
 import Tabs from './component/Tabs/Tabs';
-import { TouristicAttractionTable } from './component/TouristicAttractionTable/TouristicAttractionTable';
 
 function App() {
   return (
     <div>
-      <Tabs />
-      {/* <PresidentTable/>
-      <AirportByDepartmentTable/>
-      <AirportByRegionTable/>
-      <TouristicAttractionTable/> */}
+      <Router>
+        <Routes>
+        <Route path="/" element={<Tabs />} />
+          <Route path="/colombia_dash" element={<Tabs />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
